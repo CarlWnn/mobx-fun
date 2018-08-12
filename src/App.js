@@ -15,21 +15,25 @@ class App extends Component {
   }
 
 
+
   render() {
     return (
       <div className="App">
 
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-
         <IceCreamForm/>
 
-        <ul>
-          {this.props.store.iceCreams.map( (iceCream, i)=> <li k={i}> {iceCream.flavor}, {iceCream.color}
-          <button onClick={this.deleteClick}> delete</button></li>)}
-        </ul>
+        <h2> Title: {this.props.store.filterString}-{this.props.store.filteredArrayCount}-
+        {this.props.store.iceCreamsCount} </h2>
+
+        { !(this.props.store.isfiltered) && <ul>
+                {this.props.store.iceCreams.map( (iceCream, i)=> <li k={i}> {iceCream.flavor}, {iceCream.color}
+                <button onClick={this.deleteClick}> delete</button></li>)}
+        </ul> }
+
+        { this.props.store.isfiltered && <ul>
+                {this.props.store.filteredArray.map( (item, i)=> <li k={i}> {item.flavor}, {item.color}
+                <button onClick={this.deleteClick}> delete</button></li>)}
+        </ul> }
 
       </div>
     );
